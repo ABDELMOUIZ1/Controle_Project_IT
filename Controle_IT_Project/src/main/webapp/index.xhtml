@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Employee List</title>
+</h:head>
+<h:body>
+    <h2>Employee List</h2>
+    <h:dataTable value="#{projectController.employees}" var="employee" border="1">
+        <h:column>
+            <f:facet name="header">Employee ID</f:facet>
+            #{employee.id}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Employee Name</f:facet>
+            #{employee.name}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Projects</f:facet>
+            <h:dataTable value="#{employee.projects}" var="project" border="0">
+                <h:column>
+                    #{project.name}
+                </h:column>
+            </h:dataTable>
+        </h:column>
+        <h:column>
+            <f:facet name="header">Actions</f:facet>
+            <h:form>
+                <h:commandLink value="Remove" action="#{projectController.removeEmployee(employee)}"/>
+            </h:form>
+        </h:column>
+    </h:dataTable>
+    <h:form>
+        <h:commandButton value="Add Employee" action="affectation"/>
+    </h:form>
+</h:body>
+</html>
